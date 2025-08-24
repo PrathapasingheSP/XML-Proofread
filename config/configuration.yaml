@@ -1,0 +1,7 @@
+openai:
+  base_url: ${OPENAI_BASE_URL}
+  api_key: ${OPENAI_API_KEY}
+  model_name: ${OPENAI_MODEL_NAME}
+
+logs:
+  log_path: "logs"

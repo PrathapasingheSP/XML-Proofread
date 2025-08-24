@@ -1,0 +1,4 @@
+openai
+lxml
+pyyaml>=6.0
+python-dotenv

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE note SYSTEM "note.dtd">
+<?xml-stylesheet type="text/xsl" href="note.xsl"?>
+<note>
+    <!-- This is a comment about the note -->
+    <to>John</to>
+    <from>Jane</from>
+    <heading>Reminder</heading>
+    <body>
+        <![CDATA[
+            Don't forget to check the <em>reports</em> today!
+        ]]>
+        <p id="p-1">This is an important reminder paragraph.</p>
+    </body>
+</note>

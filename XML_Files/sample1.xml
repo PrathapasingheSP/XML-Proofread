@@ -1,0 +1,76 @@
+<document id="doc-123" type="article">
+  <metadata>
+    <title>Complex XML Example</title>
+    <author id="a-1" role="primary">Alice</author>
+    <author id="a-2" role="contributor">Bob</author>
+    <date created="2024-03-15" modified="2024-08-20"/>
+    <keywords>
+      <keyword>XML</keyword>
+      <keyword>Parsing</keyword>
+      <keyword>Testing</keyword>
+      <keyword>Nested Structures</keyword>
+    </keywords>
+  </metadata>
+
+  <content>
+    <section id="intro">
+      <heading>Introduction</heading>
+      <p>This is the opening paragraph. It has <em>emphasis</em> and <strong>bold text</strong>.</p>
+      <p id="p-1">
+        Here is a paragraph with <note type="editorial">editor's note</note> inside.
+        <ref target="sec-2">See Section 2</ref> for more details.
+      </p>
+    </section>
+
+    <section id="sec-1">
+      <heading>Nested Paragraphs</heading>
+      <p>
+        Outer paragraph begins.
+        <p id="nested-1">This is a nested paragraph with <link href="https://example.com">a link</link>.</p>
+        Continuation after nested paragraph.
+      </p>
+      <p>
+        Another paragraph with multiple
+        <inline-code>inline elements</inline-code>
+        like this.
+      </p>
+    </section>
+
+    <section id="sec-2">
+      <heading>Lists and Mixed Content</heading>
+      <p>This section has lists inside paragraphs:</p>
+      <p>
+        List introduction:
+        <list type="bulleted">
+          <item>First item</item>
+          <item>Second item <note>with a note</note></item>
+          <item>Third item</item>
+        </list>
+        Paragraph continues here.
+      </p>
+    </section>
+
+    <section id="sec-3">
+      <heading>Deep Nesting</heading>
+      <p>
+        Level 1 text.
+        <p>
+          Level 2 paragraph.
+          <p>
+            Level 3 paragraph.
+            <p>Level 4 paragraph.</p>
+          </p>
+        </p>
+        Back to level 1 continuation.
+      </p>
+    </section>
+
+    <section id="conclusion">
+      <heading>Conclusion</heading>
+      <p>
+        This document ends with a summary.
+        <quote author="Alice">XML can be as simple or as complex as needed.</quote>
+      </p>
+    </section>
+  </content>
+</document>
