@@ -3,8 +3,8 @@
     <section-number class="section">1.1</section-number>
     <section-heading class="heading_1" id="po-heading-id_8zVhkRmG2UmRtdw-29DEnA">Vérifier le XML</section-heading>
     <p id="id-1">pour le petit déjeuner j'aime <error type="spelling" correction="œufs">oeufs</error> pain et jus</p> <!-- missing capitalization, commas, accents -->
-    <p id="id-9">Les employes de l<error type="punctuation" correction="l'">l</error>entreprise travaillent dur mais ils sont tristes</p> <!-- spelling, grammar -->
-    <p id="id-14">Ils mangent toujours <error type="spelling" correction="dîner">dîner</error> ensemble <error type="grammar" correction="à la maison">a maison</error></p> <!-- grammar, punctuation, accents -->
-    <p>sarah vit <error type="punctuation" correction="à">a</error> paris france? Elle aime <error type="spelling" correction="français">francais</error> cuisine</p> <!-- capitalization, punctuation, clarity -->
-    <p id="id-20">j'ai visité londres l'été dernier et j'ai <error type="grammar" correction="aimé">aime</error> mus<error type="spelling" correction="ées">ees</error> galeries et nourriture</p> <!-- capitalization, accents, punctuation -->
+    <p id="id-9">Les employes de <error type="spelling" correction="l'entreprise">lentreprise</error> <error type="grammar" correction="travaillent">travail</error> <error type="grammar" correction="dur">dur</error> mais <error type="grammar" correction="sont tristes">ils triste</error></p> <!-- spelling, grammar -->
+    <p id="id-14">Ils <error type="word_order" correction="mangent toujours">toujours manger</error> <error type="spelling" correction="déjeuner">dîner</error> ensemble <error type="spelling" correction="à la maison">a maison</error></p> <!-- grammar, punctuation, accents -->
+    <p><error type="capitalization" correction="Sarah">sarah</error> vit <error type="spelling" correction="à">a</error> paris france? Elle aime <error type="spelling" correction="français">francais</error> cuisine</p> <!-- capitalization, punctuation, clarity -->
+    <p id="id-20">j'ai <error type="spelling" correction="visitais">visité</error> londres l'<error type="spelling" correction="été">ét</error><error type="spelling" correction="é">é</error> dernier et j'ai <error type="grammar" correction="aimais">aime</error> <error type="spelling" correction="musées">musees</error> galeries et nourriture</p> <!-- capitalization, accents, punctuation -->
 </section>

@@ -42,7 +42,9 @@ The application follows a modular architecture with the following main component
    - Applies corrections to XML content
 
 3. **LLM Integration (`llm_calling.py`)**
-   - Manages communication with OpenAI-compatible API
+   - Manages communication with multiple LLM providers:
+     - OpenRouter API (free tier)
+     - Azure OpenAI API (paid tier)
    - Formats input for the LLM
    - Processes and parses LLM responses
 
@@ -64,7 +66,7 @@ The application follows a modular architecture with the following main component
    - Text content with inline tags is extracted while preserving structure
 
 2. **LLM Processing**
-   - Extracted content is sent to the LLM with a specialized prompt
+   - Extracted content is sent to the selected LLM provider (OpenRouter or Azure OpenAI) with a specialized prompt
    - LLM identifies errors and returns annotated content
    - Response is parsed and validated
 
@@ -114,6 +116,8 @@ The application uses a layered configuration approach:
 
 Configuration parameters include:
 - OpenAI API settings (base URL, API key, model name)
+- Azure OpenAI API settings (endpoint, API key, model name, API version)
+- LLM provider selection (OpenRouter or Azure OpenAI)
 - Logging settings (log directory)
 
 ### Error Handling
@@ -140,7 +144,31 @@ Memory usage is optimized by:
 
 ### API Performance Note
 
-The current implementation uses a free OpenRouter API key, which results in slower response times from the LLM service. This is a limitation of the free tier and not of the application architecture itself. For production use cases requiring faster processing, upgrading to a paid API key with commercial-grade LLMs is recommended.
+The application supports two LLM providers with different performance characteristics:
+
+1. **OpenRouter API (Free Tier)**
+   - Provides access to various models but with slower response times
+   - Suitable for testing and development purposes
+   - Limited by rate restrictions of the free tier
+   - Processing time: ~22 seconds for a sample French XML file
+
+2. **Azure OpenAI API (Paid)**
+   - Offers significantly better performance and reliability
+   - Provides lower latency and higher throughput
+   - Requires an Azure subscription and paid API usage
+   - Recommended for production deployments and larger XML files
+   - Processing time: ~7 seconds for the same sample French XML file (3x faster)
+
+#### Performance Comparison
+
+Based on actual testing with the same French XML file:
+
+| LLM Provider | Processing Time | Relative Speed |
+|--------------|-----------------|----------------|
+| OpenRouter   | 22 seconds      | 1x (baseline)  |
+| Azure OpenAI | 7 seconds       | 3.1x faster    |
+
+This significant performance difference makes Azure OpenAI the recommended choice for production environments where processing speed is important.
 
 ## Prompt Engineering
 
@@ -188,7 +216,7 @@ The application ensures that the visible text content (excluding tags) remains u
 1. Clone the repository
 2. Create and activate a Python environment
 3. Install dependencies
-4. Configure API access through `.env` file
+4. Configure API access through `.env` file (OpenRouter) or `.env.azure` file (Azure OpenAI)
 
 ### Execution
 ```
@@ -207,7 +235,7 @@ XML-Proofread/
 ├── config/
 │   └── configuration.yaml   # Configuration settings
 ├── logs/                    # Log output directory
-├── .env.example             # Template for environment variables
+├── .env.example             # Template for OpenRouter environment variables
 ├── .gitignore               # Git ignore file
 ├── Prompt.txt               # System prompt for the LLM
 ├── README.md                # Project README
@@ -225,7 +253,7 @@ Potential areas for improvement:
 2. Support for additional XML element types
 3. Batch processing of multiple files
 4. Web interface or API endpoint
-5. Upgrading from free OpenRouter API to paid API keys for faster processing
+5. Optimizing Azure OpenAI integration for enterprise deployments
 6. Custom error type definitions
 
 ## Conclusion

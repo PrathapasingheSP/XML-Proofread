@@ -3,5 +3,13 @@ openai:
   api_key: ${OPENAI_API_KEY}
   model_name: ${OPENAI_MODEL_NAME}
 
+azureopenai:
+  endpoint: ${AZURE_OPENAI_ENDPOINT}
+  api_key: ${AZURE_OPENAI_KEY}
+  model_name: ${AZURE_MODEL}
+  api_version: ${AZURE_API_VERSION}
+
 logs:
   log_path: "logs"
+
+llm_method : 1 # 1 for openrouter and 2 for azureopenai

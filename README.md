@@ -18,7 +18,9 @@ This application processes XML files by:
 
 ## Features
 
-- Uses OpenAI-compatible API for proofreading content
+- Supports multiple LLM providers:
+  - OpenRouter API (free tier)
+  - Azure OpenAI API (paid tier)
 - Preserves all unrelated tags, attributes, and namespaces
 - Locale-aware proofing based on language input
 - Performance metrics logging (runtime, memory usage)
@@ -54,20 +56,30 @@ This application processes XML files by:
    ```
 
 5. Configure the application:
-   - Create a `.env` file in the main directory based on the `.env.example` template
-   - Go to [OpenRouter](https://openrouter.ai/) and sign in
-   - Select **Keys** from the dropdown menu near the profile icon
-   - Click the **Create API Key** button, give it a name, and create the key
-   - Copy the key and paste it in your `.env` file:
-     ```
-     OPENAI_BASE_URL=https://openrouter.ai/api/v1
-     OPENAI_API_KEY=your_copied_api_key_here without ""
-     OPENAI_MODEL_NAME=deepseek/deepseek-r1-distill-llama-70b:free
-     ```
-   - Note: The free tier model has slower response times. For production use, consider upgrading to a paid API key.
-     ```
+   - Create a `.env` file in the main directory based on the `.env.example` or `.env.azure.example` template
+   - **Option 1: OpenRouter API (Free)**
+     - Go to [OpenRouter](https://openrouter.ai/) and sign in
+     - Select **Keys** from the dropdown menu near the profile icon
+     - Click the **Create API Key** button, give it a name, and create the key
+     - Copy the key and paste it in your `.env` file:
+       ```
+       OPENAI_BASE_URL=https://openrouter.ai/api/v1
+       OPENAI_API_KEY=your_copied_api_key_here
+       OPENAI_MODEL_NAME=deepseek/deepseek-r1-distill-llama-70b:free
+       ```
+     - Note: The free tier model has slower response times.
+   - **Option 2: Azure OpenAI API (Paid)**
+     - Set up an Azure OpenAI resource in your Azure account
+     - Create a deployment with your chosen model
+     - Add the following to your `.env` file:
+       ```
+       AZURE_OPENAI_ENDPOINT=https://your-resource-name.openai.azure.com/
+       AZURE_OPENAI_KEY=your_azure_api_key
+       AZURE_MODEL=your_deployment_name
+       AZURE_API_VERSION=version_date
+       ```
    - Save the `.env` file
-   - The application will automatically use these credentials, or you can modify `config/configuration.yaml` to use any other OpenAI-compatible API
+   - Set the `llm_method` in `config/configuration.yaml` to `1` for OpenRouter or `2` for Azure OpenAI
 
 ## Usage
 
@@ -93,12 +105,20 @@ The application uses a YAML configuration file located at `config/configuration.
 
 ```yaml
 openai:
-  base_url: "https://openrouter.ai/api/v1"  # API endpoint
-  api_key: "your-api-key"                   # Your API key
+  base_url: "https://openrouter.ai/api/v1"  # OpenRouter API endpoint
+  api_key: "your-api-key"                   # Your OpenRouter API key
   model_name: "model-name"                  # Model to use for proofreading
+
+azureopenai:
+  endpoint: "https://your-resource.openai.azure.com/"  # Azure OpenAI endpoint
+  api_key: "your-azure-api-key"                       # Your Azure OpenAI API key
+  model_name: "your-deployment-name"                  # Azure deployment name
+  api_version: "2024-04-01-preview"                   # Azure API version
 
 logs:
   log_path: "logs"                          # Directory for log files
+
+llm_method: 1  # 1 for OpenRouter, 2 for Azure OpenAI
 ```
 
 ## Project Structure
@@ -120,7 +140,11 @@ The application logs performance metrics for each run:
 
 ### API Performance Note
 
-The current implementation uses a free OpenRouter API key, which results in slower response times from the LLM service. This is a limitation of the free tier and not of the application architecture itself. For production use cases requiring faster processing, upgrading to a paid API key with commercial-grade LLMs is recommended.
+The application supports two LLM providers:
+
+1. **OpenRouter API (Free Tier)**: The free tier provides access to various models but with slower response times. This is suitable for testing and development.
+
+2. **Azure OpenAI API (Paid)**: For production use cases requiring faster processing and higher reliability, the application supports Azure OpenAI integration. This provides significantly better performance but requires an Azure subscription and paid API usage.
 
 ## Error Handling
 

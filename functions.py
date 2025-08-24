@@ -80,15 +80,22 @@ def get_text_with_tags(elem,logger):
         raise
 
 
-def load_config(config_file="config\configuration.yaml"):
+def load_config(config_file="config/configuration.yaml"):
     #Load YAML configuration file and substitute environment variables.
     with open(config_file, "r", encoding="utf-8") as f:
         config = yaml.safe_load(f)
-    
+        
     # Replace environment variables in the config
     if 'openai' in config:
         config['openai']['base_url'] = os.getenv('OPENAI_BASE_URL', config['openai'].get('base_url'))
         config['openai']['api_key'] = os.getenv('OPENAI_API_KEY', config['openai'].get('api_key'))
         config['openai']['model_name'] = os.getenv('OPENAI_MODEL_NAME', config['openai'].get('model_name'))
+    
+    # Replace Azure OpenAI environment variables
+    if 'azureopenai' in config:
+        config['azureopenai']['endpoint'] = os.getenv('AZURE_OPENAI_ENDPOINT', config['azureopenai'].get('endpoint'))
+        config['azureopenai']['api_key'] = os.getenv('AZURE_OPENAI_KEY', config['azureopenai'].get('api_key'))
+        config['azureopenai']['model_name'] = os.getenv('AZURE_MODEL', config['azureopenai'].get('model_name'))
+        config['azureopenai']['api_version'] = os.getenv('AZURE_API_VERSION', config['azureopenai'].get('api_version'))
     
     return config
