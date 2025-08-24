@@ -81,7 +81,7 @@ def get_text_with_tags(elem,logger):
 
 
 def load_config(config_file="config\configuration.yaml"):
-    """Load YAML configuration file and substitute environment variables."""
+    #Load YAML configuration file and substitute environment variables.
     with open(config_file, "r", encoding="utf-8") as f:
         config = yaml.safe_load(f)
     
