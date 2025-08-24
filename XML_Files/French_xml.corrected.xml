@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?> 
+<section orientation="portrait">
+    <section-number class="section">1.1</section-number>
+    <section-heading class="heading_1" id="po-heading-id_8zVhkRmG2UmRtdw-29DEnA">Vérifier le XML</section-heading>
+    <p id="id-1">pour le petit déjeuner j'aime <error type="spelling" correction="œufs">oeufs</error> pain et jus</p> <!-- missing capitalization, commas, accents -->
+    <p id="id-9">Les employes de l<error type="punctuation" correction="l'">l</error>entreprise travaillent dur mais ils sont tristes</p> <!-- spelling, grammar -->
+    <p id="id-14">Ils mangent toujours <error type="spelling" correction="dîner">dîner</error> ensemble <error type="grammar" correction="à la maison">a maison</error></p> <!-- grammar, punctuation, accents -->
+    <p>sarah vit <error type="punctuation" correction="à">a</error> paris france? Elle aime <error type="spelling" correction="français">francais</error> cuisine</p> <!-- capitalization, punctuation, clarity -->
+    <p id="id-20">j'ai visité londres l'été dernier et j'ai <error type="grammar" correction="aimé">aime</error> mus<error type="spelling" correction="ées">ees</error> galeries et nourriture</p> <!-- capitalization, accents, punctuation -->
+</section>
