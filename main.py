@@ -95,6 +95,7 @@ def main():
         logger.info(f"Language tag: {lang_tag}")
         logger.info(f"Runtime: {runtime:.4f} seconds")
         logger.info(f"Peak memory: {memory_usage_kb:.2f} KB")
+        logger.info(f"Number of outermost <p> elements: {len(outermost_p)}")
         logger.info(f"Corrected file saved to: {output_file_path}")
 
     except Exception as e:
