@@ -64,6 +64,8 @@ This application processes XML files by:
      OPENAI_API_KEY=your_copied_api_key_here without ""
      OPENAI_MODEL_NAME=deepseek/deepseek-r1-distill-llama-70b:free
      ```
+   - Note: The free tier model has slower response times. For production use, consider upgrading to a paid API key.
+     ```
    - Save the `.env` file
    - The application will automatically use these credentials, or you can modify `config/configuration.yaml` to use any other OpenAI-compatible API
 
@@ -115,6 +117,10 @@ The application logs performance metrics for each run:
 - Runtime (seconds)
 - Peak memory usage (KB)
 - Number of `<p>` elements processed
+
+### API Performance Note
+
+The current implementation uses a free OpenRouter API key, which results in slower response times from the LLM service. This is a limitation of the free tier and not of the application architecture itself. For production use cases requiring faster processing, upgrading to a paid API key with commercial-grade LLMs is recommended.
 
 ## Error Handling
 
